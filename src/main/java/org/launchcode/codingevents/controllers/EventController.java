@@ -4,8 +4,10 @@ import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +28,23 @@ public class EventController {
     @GetMapping("create")
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
+        model.addAttribute(new Event());
         return "events/create";
     }
 
     @PostMapping("create")
-    public String processCreateEventForm(@ModelAttribute Event newEvent){ //creates new event object and at the same
-    // time pass it  into the list  Model Binding- model atttribute looks for paramaters in request that match clas
-    // and will automatically create event object that matches values fields in Event
+    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model){ //creates
+        // new event
+        // object and at
+        // the
+        // same time pass it  into the list  Model Binding- model attribute looks for parameters in request that
+        // match class and will automatically create event object that matches values fields in Event
+
+        //@Valid allows us to check to see the rules we created in controller matches/follows rules
+       if (errors.hasErrors()){
+           model.addAttribute("title", "Create Event");
+           return "events/create"; //if there is an error it returns us to create event form and adds message
+       }
         EventData.add(newEvent);
         return "redirect:";
     }

@@ -8,13 +8,22 @@
 <form method="post">
     <div class="form-group">
         <label>Name
-            <input type="text" name="name" class="form-control">
+<!--            Tells Thymeleaf that you want input to correspond to add field-specific attributes to the form, such as name and id.-->
+            <input th:field="${event.name}" class="form-control">
         </label>
+        <p class="error" th:errors="${event.name}"></p>
     </div>
     <div class="form-group">
         <label>Description
-            <input type="text" name="description" class="form-control">
+            <input th:field="${event.description}" class="form-control">
         </label>
+        <p class="error" th:errors="${event.description}"></p>
+    </div>
+    <div class="form-group">
+        <label>Contact Email
+            <input th:field="${event.contactEmail}" class="form-control">
+        </label>
+        <p class="error" th:errors="${event.contactEmail}"></p>
     </div>
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-success">
