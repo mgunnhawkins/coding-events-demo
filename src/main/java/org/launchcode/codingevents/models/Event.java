@@ -29,10 +29,12 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    @AssertTrue(message= "You must click the checkbox for required registration.")
-    private boolean registrationRequired = false;
+    private boolean registrationRequired = true;
 
-    public Event(String name, String description, String location, int numAttendees, String contactEmail, boolean registrationRequired) {
+    private EventType type;
+
+    public Event(String name, String description, String location, int numAttendees, String contactEmail,
+                 boolean registrationRequired, EventType type) {
         this();
         this.name = name;
         this.description = description;
@@ -40,9 +42,9 @@ public class Event {
         this.numAttendees = numAttendees;
         this.contactEmail = contactEmail;
         this.registrationRequired = registrationRequired;
+        this.type = type;
 
     }
-
     public Event() {
         this.id = nextId;
         nextId++;
@@ -87,6 +89,10 @@ public class Event {
     public int getId() {
         return id;
     }
+
+    public EventType getType() { return type; }
+
+    public void setType(EventType type) { this.type = type; }
 
     @Override
     public String toString() {
