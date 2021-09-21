@@ -29,6 +29,7 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
+
     private boolean registrationRequired = true;
 
     private EventType type;
