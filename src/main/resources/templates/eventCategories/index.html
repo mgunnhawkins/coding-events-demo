@@ -4,18 +4,15 @@
 <body class="container">
 
 <header th:replace="fragments :: header"></header>
+<div>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Category Name</th>
-    </tr>
-    </thead>
-    <tr th:each="category : ${categories}">
-        <td th:text="${category.name}"></td>
-    </tr>
-
-</table>
-
+    <table>
+        <th:block th:each = "category : ${categories}">
+            <tr>
+                <td th:text = "${category.name}"></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
 </body>
 </html>
