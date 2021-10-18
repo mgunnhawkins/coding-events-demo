@@ -1,5 +1,7 @@
 package org.launchcode.codingevents.models;
 
+import jdk.jfr.EventType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
